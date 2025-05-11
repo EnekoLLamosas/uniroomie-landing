@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>UniRoomie - Match de Compañeros</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      background: #fff6e6;
+      padding: 2em;
+    }
+    .card {
+      background: white;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      padding: 2em;
+      border-radius: 12px;
+      max-width: 300px;
+      margin: auto;
+    }
+    img {
+      max-width: 100%;
+      border-radius: 12px;
+    }
+    .btns {
+      margin-top: 1.5em;
+    }
+    button {
+      padding: 0.7em 1.2em;
+      font-size: 1rem;
+      margin: 0 0.5em;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .yes { background-color: #4CAF50; color: white; }
+    .no { background-color: #f44336; color: white; }
+  </style>
+</head>
+<body>
+  <div class="card" id="profile">
+    <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Perfil">
+    <h2>Laura, 21 años</h2>
+    <p>Estudiante de Psicología en Granada. Ordenada, sociable, busca piso céntrico.</p>
+    <div class="btns">
+      <button class="no" onclick="nextProfile()">No</button>
+      <button class="yes" onclick="nextProfile()">Sí</button>
+    </div>
+  </div>
+  <script>
+    const profiles = [
+      {
+        name: 'Carlos, 22 años',
+        img: 'https://randomuser.me/api/portraits/men/75.jpg',
+        desc: 'Estudia Ingeniería. Gamer, limpio, no fuma.'
+      },
+      {
+        name: 'Sofía, 20 años',
+        img: 'https://randomuser.me/api/portraits/women/30.jpg',
+        desc: 'Estudiante de Derecho. Tranquila y busca compañeras.'
+      },
+      {
+        name: 'David, 23 años',
+        img: 'https://randomuser.me/api/portraits/men/42.jpg',
+        desc: 'Médico en prácticas. Cocinero aficionado, no fiestas.'
+      }
+    ];
+    let index = 0;
+    function nextProfile() {
+      if (index >= profiles.length) {
+        document.getElementById('profile').innerHTML = '<h2>¡Gracias por probar el sistema de Match!</h2>';
+        return;
+      }
+      const p = profiles[index++];
+      document.getElementById('profile').innerHTML = `
+        <img src="\${p.img}" alt="Perfil">
+        <h2>\${p.name}</h2>
+        <p>\${p.desc}</p>
+        <div class="btns">
+          <button class="no" onclick="nextProfile()">No</button>
+          <button class="yes" onclick="nextProfile()">Sí</button>
+        </div>
+      `;
+    }
+  </script>
+</body>
+</html>
